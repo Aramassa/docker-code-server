@@ -32,6 +32,9 @@ RUN \
  echo "**** install runtime dependencies ****" && \
  apt-get install -y \
 	git \
+  git-crypt \
+  golang \
+  rbenv \
 	jq \
 	nano \
 	net-tools \
@@ -58,6 +61,9 @@ RUN \
 	/tmp/* \
 	/var/lib/apt/lists/* \
 	/var/tmp/*
+
+RUN git clone https://github.com/nodenv/nodenv.git ~/.nodenv && \
+  cd ~/.nodenv && src/configure && make -C src
 
 # add local files
 COPY /root /
